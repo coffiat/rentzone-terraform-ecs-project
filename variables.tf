@@ -106,4 +106,15 @@ variable "env_file_name" {
   type        = string
 }
 
+# ecs variables
+variable "architecture" {
+  description = "ecs cpu architecture"
+  type        = string
+}
+
+variable "container_image" {
+  description = "container image url"
+  type        = string
+}
+
 
