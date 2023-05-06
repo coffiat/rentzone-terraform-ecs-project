@@ -3,7 +3,7 @@ resource "aws_lb" "application_load_balance" {
   name               = "${var.project_name}-alb"
   internal           = false
   load_balancer_type = "application"
-  subnets            = [aws_subnet.public_subnet_az1.id, aws_subnet.public_subnet_az2.id ]
+  subnets            = [aws_subnet.public_subnet_az1.id, aws_subnet.public_subnet_az2.id]
   security_groups    = [aws_security_group.alb_sg.id]
 
   tags = {
@@ -52,11 +52,11 @@ resource "aws_lb_listener" "alb_http_listener" {
 
 # create a listener on port 443 with forward action
 resource "aws_lb_listener" "alb_https_listener" {
-  load_balancer_arn  = aws_lb.application_load_balance.arn
-  port               = 443
-  protocol           = "HTTPS"
-  ssl_policy         = "ELBSecurityPolicy-2016-08"
-  certificate_arn    = aws_acm_certificate.acm_certificate.arn
+  load_balancer_arn = aws_lb.application_load_balance.arn
+  port              = 443
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = aws_acm_certificate.acm_certificate.arn
 
   default_action {
     type             = "forward"

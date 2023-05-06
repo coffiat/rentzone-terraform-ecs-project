@@ -1,18 +1,18 @@
 # create database subnet group
 resource "aws_db_subnet_group" "database_subnet_group" {
-  name        =  "${var.project_name}_${var.environment}_database_subnet"
+  name        = "${var.project_name}_${var.environment}_database_subnet"
   subnet_ids  = [aws_subnet.private_data_subnet_az1.id, aws_subnet.private_data_subnet_az2.id]
   description = "subnets for database instance"
 
   tags = {
     Name        = "rentzone_${var.environment}_database_subnet"
-  Environment = var.environment
+    Environment = var.environment
   }
 }
 
 # get information about a database snapshot
 data "aws_db_snapshot" "latest_db_snapshot" {
-  db_snapshot_identifier =var.database_snapshot_identifier
+  db_snapshot_identifier = var.database_snapshot_identifier
   most_recent            = true
   snapshot_type          = "manual"
 }
